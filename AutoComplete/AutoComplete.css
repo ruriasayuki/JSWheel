@@ -1,0 +1,39 @@
+﻿.word {
+            margin-top: 4px;
+            position: absolute;
+            z-index: 99;
+            width: 185px;
+            height: auto;
+            background-color: white;
+            border: 1px solid;
+            display: none;
+            border-radius: 3px;
+            border-color: #d2d2d2;
+            box-shadow: 0 2px 4px rgba(0,0,0,.12);
+            max-height: 600px;
+        }
+
+        .click_work {
+            padding-left: 10px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-weight: lighter;
+            font-size: 16px;
+            color: #001100;
+            cursor: pointer; /*鼠标放上变成小手*/
+        }
+
+            .click_work:hover {
+                color: white;
+                background-color: #5fb878;
+            }
+            .click_work.auto_onmouseover {
+                color: white;
+                background-color: #5fb878;
+            }
+        .error {
+            font-weight: lighter;
+            font-size: 20px;
+            color: gray;
+            cursor: pointer; /*鼠标放上变成小手*/
+        }
