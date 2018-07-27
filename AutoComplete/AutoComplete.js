@@ -96,7 +96,12 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
                     $('#'+_wordDOM).append('<div class="error">Not find  "' + keywords + '"</div>');
                 }
                 $.each(list, function () {
-                    $('#' + _wordDOM).append('<div class="click_work" id="' + this[_idLabel] + '">' + this[_nameLabel] + '</div>');
+                    var nameLabels = _nameLabel.split(',');
+                    var display = "";
+                    for (var k = 0, length = nameLabels.length; k < length; k++) {
+                        display = display + this[nameLabels[k]]+';';
+                    }
+                    $('#' + _wordDOM).append('<div class="click_work" id="' + this[_idLabel] + '">' + display + '</div>');
                     _cache.push(this);
                 }) 
             },
