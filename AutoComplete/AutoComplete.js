@@ -16,6 +16,7 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
     var _cache = []
     var _idLabel = idLabel;
     var _nameLabel = nameLabel;
+    var _lastString = "";
     var _index = -1;
     var _changeClassname = function (length) {
         for (var i = 0; i < length; i++) {
@@ -57,6 +58,7 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
         _index = -1;
         var keywords = $(this).val();
         if (keywords == '') { $('#word').hide(); return };
+        if (keywords == _lastString) return;
         var appendlen = _appendData.length;
         var trueAppend = ""
         for (var i = 0; i < appendlen; i++)
@@ -68,6 +70,7 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
             }
             trueAppend +=ad;
         }
+        _lastString = keywords;
         $.ajax({
             url: _url,
             dataType: 'json',
