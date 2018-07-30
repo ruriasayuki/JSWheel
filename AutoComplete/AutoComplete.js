@@ -63,6 +63,7 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
         var trueAppend = ""
         for (var i = 0; i < appendlen; i++)
         {
+			if(i>0) trueAppend+=",";
             var ad = _appendData[i];
             if (ad[0] == '#'||ad[0]=='.')
             {
