@@ -3,12 +3,21 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
     var _domid = domid;
     var _url = url;
     var _clickFunc = clickFunc || function () {
-        _this = $('.click_work:hover').length == 0 ? $('.click_work.auto_onmouseover') : $('.click_work:hover');
-        var word = $(_this).text();
-        $('#'+domid).val(word);
-        $('.word').hide();
+        _this = $('.click_work:hover').length > 0 ? $('.click_work:hover') : $('.click_work.auto_onmouseover').length > 0 ? $('.click_work.auto_onmouseover') : [];
+        if (_this.length == 0) return;
+        else{
+            var word = $(_this).text();
+            $('#'+domid).val(word);
+            _hideFunction();
+        }
     };
-
+    var _hideFunction = function ()
+    {
+        $('.word').hide();
+        $('.error').hide();
+        _index = -1;
+        _changeClassname(_cache.length);
+    }
     var _appendData = appendData;
     var _parent = $('#'+domid).parent();
     $(_parent).append('<div id="'+domid+'word" class="word"></div>');
@@ -31,6 +40,13 @@ var AutoComplete = function(domid,url,clickFunc,appendData,idLabel,nameLabel)
             }
         }
     }
+    $('#' + _domid).blur(function (event)
+    {
+        console.log($(':focus'));
+        if ($(':focus').hasClass('click_work')) return;
+  
+        _hideFunction();
+    })
     $('#' + _domid).keyup(function (event) {
         var length = _cache.length;
         if (event.keyCode == 40) {
